@@ -33,8 +33,6 @@ Le notebook se connecte à la base de donnée locale et effectue des requète SQ
 
 ## 📑 Todo 
  
-- Faire marcher Sentence Transformers en local
-- Changer de jeu de données (100 000 lignes en français)
 - Ajouter un indexing (hsnwlib ou IVFFlat)
 - Filtering
 

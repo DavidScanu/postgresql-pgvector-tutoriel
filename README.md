@@ -1,18 +1,15 @@
-# Créer une base de données vectorielle avec PostgreSLQ et pgvector (Docker)
+# 🔎 Créer une base de données vectorielle avec PostgreSLQ et pgvector (Docker)
 
 Démonstration d'implémentation d'une **recherche vectorielle** avec PostgreSQL, l'extension `pgvector` et Python. 
 
-## Etapes
+## ⚡Features
 
-1. Créer la BDD PostgreSQL + pgvector dans un conteneur Docker
-2. Se connecter avec psql (pour vérification)
-3. Importer les données (textes)
-4. Créer les vecteurs avec Sentence Transformers
-5. Créer une table 'quora' dans la BDD
-6. Sauvegarder les données et les vecteurs dans la BDD
-7. Utiliser la recherche vectorielle 
+- Configuration `docker-compose.yaml` pour **PostgreSQL avec l'extension pgvector**
+- Code Python pour insérer des données dans la base de données
+- Code Python pour générer des representations vectorielles avec `Sentence Transformers`
+- Code Python pour créer une recherche vectorielle à l'aide de **pgvector**
 
-## Utilisation
+## 💻 Utilisation
 
 1. Cloner ce dépôt
 2. Se placer dans le dossier
@@ -34,14 +31,14 @@ docker compose up -d
 
 Le notebook se connecte à la base de donnée locale et effectue des requète SQL avec `psycopg`.
 
-## Todo 
+## 📑 Todo 
  
 - Faire marcher Sentence Transformers en local
 - Changer de jeu de données (100 000 lignes en français)
 - Ajouter un indexing (hsnwlib ou IVFFlat)
 - Filtering
 
-## Ressources 
+## 📺 Ressources 
 
 - https://access.crunchydata.com/documentation/pgvector/0.5.1/
 - https://github.com/pgvector/pgvector

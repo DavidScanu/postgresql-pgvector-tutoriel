@@ -5,11 +5,12 @@ Démonstration d'implémentation d'une **recherche vectorielle** avec PostgreSQL
 ## ⚡Features
 
 - Configuration `docker-compose.yaml` pour **PostgreSQL avec l'extension pgvector**
-- Code Python pour insérer des données dans la base de données
 - Code Python pour générer des representations vectorielles avec `Sentence Transformers`
+- Code Python pour insérer des données dans la base de données
 - Code Python pour créer une recherche vectorielle à l'aide de **pgvector**
+- Application **Streamlit** de démonstration
 
-## 💻 Utilisation
+## 🗨️ Utilisation
 
 1. Cloner ce dépôt
 2. Se placer dans le dossier
@@ -28,8 +29,17 @@ docker compose up -d
     -  Aller dans le conteneur : `docker exec -it <container id> bash`
     - Se connecter à la BDD : `psql -h localhost -U postgres -d vectordb`
 6. Exectuer le notebook de ce dépôt
+7. Lancer l'application **Streamlit**
 
 Le notebook se connecte à la base de donnée locale et effectue des requète SQL avec `psycopg`.
+
+## 💻 Application Streamlit
+
+Après avoir executé le notebook, la commande suivante lance une application Streamlit avec laquelle vous pouvez effectuer une recherche sémantique dans la base de donnée.
+
+```
+streamlit run app.py
+```
 
 ## 📑 Todo 
  

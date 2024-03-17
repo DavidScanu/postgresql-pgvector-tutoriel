@@ -26,7 +26,8 @@ st.set_page_config(
 )
 
 # Modèle Sentence Transformer pour l'encodage de la requète de recherche
-model_name = 'all-MiniLM-L6-v2' # Vector size = 384
+# Modèle pré-entraîné d'encodage de textes en français
+model_name = "dangvantuan/sentence-camembert-base" # vector size = 768
 
 # A propos du caching
 # https://docs.streamlit.io/library/advanced-features/caching
@@ -38,7 +39,7 @@ model = load_model(model_name)
 
 # Retourner les résultats dans une DataFrame
 @st.cache_data(show_spinner=False)  # 👈 Add the caching decorator
-def query_to_dataframe(query, column_names):
+def query_to_dataframe(query, column_names, top_k=20):
 
     # Connect to an existing database
     with psycopg.connect(conninfo=db_url) as conn:
@@ -46,13 +47,13 @@ def query_to_dataframe(query, column_names):
         with conn.cursor() as cur:
             embeddings_query = model.encode(query).tolist()
             # Execute a command: this creates a new table
-            res = cur.execute("""
+            res = cur.execute(f"""
                 SELECT
                     1 - (embedding <=> %s) AS cosine_similarity,
                     id,    
                     question,
                     reponse
-                FROM piaf ORDER BY cosine_similarity DESC LIMIT 10;
+                FROM piaf ORDER BY cosine_similarity DESC LIMIT {top_k};
             """, (str(embeddings_query), )).fetchall()
     res_df = pd.DataFrame(res, columns=column_names)
     return res_df
@@ -69,8 +70,9 @@ Recherche sémantique dans une base de donnée PostgreSQL avec l'extension [pgve
 query = st.text_input('Recherche', placeholder="Entrez votre recherche ici")
 
 if query : 
-    star_time = time.time()
-    res_df = query_to_dataframe(query, ['cosine_similarity', 'id', 'question', 'reponse'])
-    st.dataframe(res_df)
-    end_time = time.time()
-    st.write(f"Temps de la recherche : {round(end_time - star_time, 2)} secondes")
+    with st.container():
+        star_time = time.time()
+        res_df = query_to_dataframe(query, ['cosine_similarity', 'id', 'question', 'reponse'])
+        st.dataframe(res_df)
+        end_time = time.time()
+        st.write(f"Temps de la recherche : {round(end_time - star_time, 2)} secondes")

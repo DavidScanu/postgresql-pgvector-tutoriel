@@ -21,7 +21,7 @@ db_url = f"postgresql://{user}:{password}@{host}:{port}/{database}"
 st.set_page_config(
     page_title="Recherche sémantique",
     page_icon="🔎",
-    layout="wide",
+    layout="centered",
     initial_sidebar_state="expanded"
 )
 
@@ -39,7 +39,7 @@ model = load_model(model_name)
 
 # Retourner les résultats dans une DataFrame
 @st.cache_data(show_spinner=False)  # 👈 Add the caching decorator
-def query_to_dataframe(query, column_names, top_k=20):
+def query_to_dataframe(query, column_names, top_k=10):
 
     # Connect to an existing database
     with psycopg.connect(conninfo=db_url) as conn:

@@ -1,6 +1,7 @@
 postgres/
-quora-embeddings-quora-distilbert-multilingual-size-100000.pkl
-queries.pkl
+
+# Streamlit secrets
+secrets.toml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

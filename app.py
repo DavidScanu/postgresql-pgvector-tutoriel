@@ -7,6 +7,7 @@ import time
 import streamlit as st
 import pandas as pd
 import psycopg
+from pgvector.psycopg import register_vector
 from sentence_transformers import SentenceTransformer
 
 # Identifiants de connection à la BDD PostgreSQL + pgvector
@@ -43,20 +44,23 @@ def query_to_dataframe(query, column_names, top_k=10):
 
     # Connect to an existing database
     with psycopg.connect(conninfo=db_url) as conn:
-        # Open a cursor to perform database operations
-        with conn.cursor() as cur:
-            embeddings_query = model.encode(query).tolist()
-            # Execute a command: this creates a new table
-            res = cur.execute(f"""
-                SELECT
-                    1 - (embedding <=> %s) AS cosine_similarity,
-                    id,    
-                    question,
-                    reponse
-                FROM piaf ORDER BY cosine_similarity DESC LIMIT {top_k};
-            """, (str(embeddings_query), )).fetchall()
-    res_df = pd.DataFrame(res, columns=column_names)
-    return res_df
+
+        register_vector(conn)
+
+        query_embedding = model.encode(query)
+
+        res = conn.execute(f"""
+            SELECT
+                1 - (embedding <=> %s) AS cosine_similarity,
+                id,    
+                question,
+                reponse
+            FROM piaf ORDER BY cosine_similarity DESC LIMIT {top_k};
+        """, (query_embedding, )).fetchall()
+
+        res_df = pd.DataFrame(res, columns=column_names)
+        
+        return res_df
 
 st.title('🔎 Recherche sémantique')
 

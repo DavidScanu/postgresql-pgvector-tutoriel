@@ -48,9 +48,16 @@ streamlit run app.py
 
 ## 📺 Ressources 
 
-- https://access.crunchydata.com/documentation/pgvector/0.5.1/
-- https://github.com/pgvector/pgvector
-- https://www.enterprisedb.com/blog/what-is-pgvector
-- https://medium.com/@johannes.ocean/setting-up-a-postgres-database-with-the-pgvector-extension-10ab7ff212cc
-- https://devcenter.heroku.com/articles/pgvector-heroku-postgres#negative-inner-product
-- https://blog.heroku.com/pgvector-for-similarity-search-on-heroku-postgres
+### pgvector
+
+- [pgvector GitHub](https://github.com/pgvector/pgvector)
+- [pgvector crunchy data](https://access.crunchydata.com/documentation/pgvector/0.5.1/)
+- [What is pgvector and How Can It Help You?](https://www.enterprisedb.com/blog/what-is-pgvector)
+- [Implementing the pgvector extension for a PostgreSQL database](https://medium.com/@johannes.ocean/setting-up-a-postgres-database-with-the-pgvector-extension-10ab7ff212cc)
+- [pgvector on Heroku Postgres](https://devcenter.heroku.com/articles/pgvector-heroku-postgres#negative-inner-product)
+- [How to Use pgvector for Similarity Search on Heroku Postgres](https://blog.heroku.com/pgvector-for-similarity-search-on-heroku-postgres)
+- [HNSW Indexes with Postgres and pgvector](https://www.crunchydata.com/blog/hnsw-indexes-with-postgres-and-pgvector)
+
+### Psycopg 3
+
+- [Psycopg 3 – PostgreSQL database adapter for Python](https://www.psycopg.org/psycopg3/docs/basic/usage.html)

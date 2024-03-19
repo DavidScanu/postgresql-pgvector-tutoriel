@@ -35,7 +35,7 @@ model_name = "dangvantuan/sentence-camembert-base" # vector size = 768
 
 @st.cache_resource(show_spinner=False)  # 👈 Add the caching decorator
 def load_model(model_name):
-    return SentenceTransformer(model_name, device='cuda')
+    return SentenceTransformer(model_name)
 model = load_model(model_name)
 
 # Retourner les résultats dans une DataFrame

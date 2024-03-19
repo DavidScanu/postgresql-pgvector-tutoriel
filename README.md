@@ -58,6 +58,7 @@ streamlit run app.py
 - [How to Use pgvector for Similarity Search on Heroku Postgres](https://blog.heroku.com/pgvector-for-similarity-search-on-heroku-postgres)
 - [HNSW Indexes with Postgres and pgvector](https://www.crunchydata.com/blog/hnsw-indexes-with-postgres-and-pgvector)
 - [Scaling Vector Data with Postgres](https://www.crunchydata.com/blog/scaling-vector-data-with-postgres)
+- https://www.crunchydata.com/blog/topic/ai
 
 ### Psycopg 3
 

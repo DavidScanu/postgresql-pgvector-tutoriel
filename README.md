@@ -57,6 +57,7 @@ streamlit run app.py
 - [pgvector on Heroku Postgres](https://devcenter.heroku.com/articles/pgvector-heroku-postgres#negative-inner-product)
 - [How to Use pgvector for Similarity Search on Heroku Postgres](https://blog.heroku.com/pgvector-for-similarity-search-on-heroku-postgres)
 - [HNSW Indexes with Postgres and pgvector](https://www.crunchydata.com/blog/hnsw-indexes-with-postgres-and-pgvector)
+- [Scaling Vector Data with Postgres](https://www.crunchydata.com/blog/scaling-vector-data-with-postgres)
 
 ### Psycopg 3
 

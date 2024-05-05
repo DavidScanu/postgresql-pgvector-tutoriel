@@ -3,7 +3,7 @@ services:
     hostname: db
     image: pgvector/pgvector:pg16
     ports:
-     - 5432:5432
+     - "5432:5432"
     restart: always
     environment:
       - POSTGRES_DB=vectordb
@@ -12,4 +12,22 @@ services:
       # - POSTGRES_HOST_AUTH_METHOD=trust
     volumes:
      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-     - ./postgres/data:/var/lib/postgresql/data
+     - postgres-data:/var/lib/postgresql/data
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:latest
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=david@email.com
+      - PGADMIN_DEFAULT_PASSWORD=abcdef12345
+      - PGADMIN_LISTEN_PORT=5050
+      - PGADMIN_CONFIG_PROXY_X_HOST_COUNT=1
+      - PGADMIN_CONFIG_PROXY_X_PREFIX_COUNT=1
+    ports:
+      - "5050:5050"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    
+volumes: 
+  postgres-data:
+  pgadmin-data:

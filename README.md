@@ -17,21 +17,42 @@ Démonstration d'implémentation d'une **recherche vectorielle** avec PostgreSQL
 ```
 cd postgresql-pgvector-tutoriel/
 ```
-3. Installer les dépendances 
-```
-pip install -r requirements.txt
-```
 4. Lancer le conteneur Docker avec
 ```
 docker compose up -d
 ```
-5. Se connecter à la base de donnée avec `psql` (pour vérifications)
-    -  Aller dans le conteneur : `docker exec -it <container id> bash`
-    - Se connecter à la BDD : `psql -h localhost -U postgres -d vectordb`
+3. Installer les dépendances 
+```
+pip install -r requirements.txt
+```
 6. Exectuer le notebook de ce dépôt
-7. Lancer l'application **Streamlit**
 
 Le notebook se connecte à la base de donnée locale et effectue des requète SQL avec `psycopg`.
+
+## Administrer la base de données
+
+Deux méthodes pour contrôler la base de données PostgreSQL : [psql](https://docs.postgresql.fr/12/app-psql.html) ou [pgAdmin](https://www.pgadmin.org/).
+
+## psql
+
+Pour se connecter à la base de donnée avec `psql` (pour vérifications):
+- Aller dans le conteneur : `docker exec -it <container id> bash`
+- Se connecter à la BDD : `psql -h localhost -U  testuser -d vectordb`
+
+## pgAdmin
+
+Pour se connecter à la base de données avec `pgAdmin` : 
+
+- Aller à l'adresse : `http://localhost:5050`
+- Renseigner le nom et mot de passe pgAdmin déclarés dans le `docker-compose.yaml`
+- Ajouter un nouveau serveur 
+- Remplir les informations de connection : 
+  - **Host name/address** : `db` (comme le nom du service dans le `docker-compose.yaml`)
+  - **Port** : `5432`
+  - **Username** : `testuser`
+  - **Password** : `testpwd`
+
+
 
 ## 💻 Application Streamlit
 
@@ -43,6 +64,9 @@ streamlit run app.py
 
 ## 📑 Todo 
  
+- Volume docker au lieu de Bind Mount ✔️
+- Ajouter pgAdmin ✔️
+- App Streamlit dans un container
 - Ajouter un indexing (hsnwlib ou IVFFlat)
 - Filtering
 
@@ -63,3 +87,7 @@ streamlit run app.py
 ### Psycopg 3
 
 - [Psycopg 3 – PostgreSQL database adapter for Python](https://www.psycopg.org/psycopg3/docs/basic/usage.html)
+
+### pgAdmin
+
+- https://www.pgadmin.org/docs/pgadmin4/latest/container_deployment.html

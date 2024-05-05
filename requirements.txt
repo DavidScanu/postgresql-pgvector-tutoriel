@@ -1,3 +1,5 @@
+ipykernel
+jupyterlab
 sentence-transformers
 psycopg[binary]
 pgvector

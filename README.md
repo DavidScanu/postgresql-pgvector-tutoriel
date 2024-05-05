@@ -25,7 +25,7 @@ docker compose up -d
 ```
 pip install -r requirements.txt
 ```
-6. Exectuer le notebook de ce dépôt
+6. **Executer le notebook** pour remplir la base de données
 
 Le notebook se connecte à la base de donnée locale et effectue des requète SQL avec `psycopg`.
 

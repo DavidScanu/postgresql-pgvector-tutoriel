@@ -17,15 +17,15 @@ Démonstration d'implémentation d'une **recherche vectorielle** avec PostgreSQL
 ```
 cd postgresql-pgvector-tutoriel/
 ```
-4. Lancer le conteneur Docker avec
+3. Lancer le conteneur Docker avec
 ```
 docker compose up -d
 ```
-3. Installer les dépendances 
+4. Installer les dépendances 
 ```
 pip install -r requirements.txt
 ```
-6. **Executer le notebook** pour remplir la base de données
+5. **Executer le notebook** pour remplir la base de données
 
 Le notebook se connecte à la base de donnée locale et effectue des requète SQL avec `psycopg`.
 
@@ -64,8 +64,7 @@ streamlit run app.py
 
 ## 📑 Todo 
  
-- Volume docker au lieu de Bind Mount ✔️
-- Ajouter pgAdmin ✔️
+- Nettoyer `init.sql`
 - App Streamlit dans un container
 - Ajouter un indexing (hsnwlib ou IVFFlat)
 - Filtering

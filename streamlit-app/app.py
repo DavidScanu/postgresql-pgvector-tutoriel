@@ -8,17 +8,21 @@ import psycopg
 from pgvector.psycopg import register_vector
 from sentence_transformers import SentenceTransformer
 
+# Identifiants de connection à la BDD PostgreSQL + pgvector
 import os
 from dotenv import load_dotenv
-
 load_dotenv() 
+# user = os.environ['DB_USER']
+# password = os.environ['DB_PWD']
+# host = os.environ['DB_HOST']
+# port = os.environ['DB_PORT']
+# database = os.environ['DB_NAME']
 
-# Identifiants de connection à la BDD PostgreSQL + pgvector
-user = os.environ['DB_USER']
-password = os.environ['DB_PWD']
-host = os.environ['DB_HOST']
-port = os.environ['DB_PORT']
-database = os.environ['DB_NAME']
+user = 'testuser'
+password = 'testpwd'
+host = 'localhost'
+port = 5432
+database = 'vectordb'
 db_url = f"postgresql://{user}:{password}@{host}:{port}/{database}"
 
 # Configuration de la page Streamlit

@@ -12,16 +12,19 @@ Démonstration d'implémentation d'une **recherche vectorielle** avec PostgreSQL
 
 ## 🗨️ Utilisation
 
-1. Cloner ce dépôt
-2. Se placer dans le dossier
+1. Clonez ce dépôt
+```
+git clone <url>
+```
+2. Placez-vous dans le dossier
 ```
 cd postgresql-pgvector-tutoriel/
 ```
-3. Lancer le conteneur 🐳 Docker avec
+3. Lancez le conteneur 🐳 Docker avec
 ```
 docker compose up -d
 ```
-4. Déplacez-vous dans le dossier `notebooks` et installez les dépendances 
+4. Déplacez-vous dans le dossier `streamlit-app` et installez les dépendances.
 
 ```bash
 cd ./notebooks
@@ -30,7 +33,11 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-5. **Executer le notebook** `notebooks/01-notebook.ipynb` pour remplir la base de données
+5. Exécutez le fichier python `db.py` pour remplir la base de données.
+
+```
+python3 db.py
+```
 
 
 ## 💻 Application Streamlit

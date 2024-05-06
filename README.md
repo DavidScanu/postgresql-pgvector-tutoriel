@@ -21,17 +21,21 @@ cd postgresql-pgvector-tutoriel/
 ```
 docker compose up -d
 ```
-4. Installer les dépendances 
-```
+4. Déplacez-vous dans le dossier `notebooks` et installez les dépendances 
+
+```bash
+cd ./notebooks
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
-5. **Executer le notebook** pour remplir la base de données
 
-Le notebook se connecte à la base de donnée locale et effectue des requète SQL avec `psycopg`.
+5. **Executer le notebook** `notebooks/01-notebook.ipynb` pour remplir la base de données
+
 
 ## 💻 Application Streamlit
 
-Après avoir executé le notebook, la commande suivante lance une application Streamlit avec laquelle vous pouvez effectuer une recherche sémantique dans la base de donnée.
+Pour lancer l'application Streamlit, placez-vous dans le dossier `streamlit-app` et lancez la commande suivante :
 
 ```
 streamlit run app.py
@@ -62,10 +66,9 @@ Pour se connecter à la base de données avec `pgAdmin` :
 
 ## 📑 Todo 
  
-- Nettoyer `init.sql`
 - App Streamlit dans un container
 - Ajouter un indexing (hsnwlib ou IVFFlat)
-- Filtering
+- Ajouter options de recherche (Filtering)
 
 ## 📺 Ressources 
 

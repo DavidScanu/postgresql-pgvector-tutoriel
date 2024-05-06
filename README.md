@@ -1,14 +1,14 @@
-# 🔎 Créer une base de données vectorielle avec PostgreSLQ et pgvector (Docker)
+# 🔎 Créer une base de données vectorielle avec PostgreSLQ et pgvector
 
-Démonstration d'implémentation d'une **recherche vectorielle** avec PostgreSQL, l'extension `pgvector` et Python. 
+Démonstration d'implémentation d'une **recherche vectorielle** avec PostgreSQL et l'extension `pgvector`. 
 
 ## ⚡Features
 
-- Configuration `docker-compose.yaml` pour **PostgreSQL avec l'extension pgvector**
-- Code Python pour générer des representations vectorielles avec `Sentence Transformers`
-- Code Python pour insérer des données dans la base de données
-- Code Python pour créer une recherche vectorielle à l'aide de **pgvector**
-- Application **Streamlit** de démonstration
+- Configuration `docker-compose.yaml` pour **PostgreSQL avec l'extension pgvector**.
+- Code Python pour générer des representations vectorielles avec `Sentence Transformers`.
+- Code Python pour insérer des données dans la base de données.
+- Code Python pour créer une recherche vectorielle à l'aide de **pgvector**.
+- Application **Streamlit** de démonstration.
 
 ## 🗨️ Utilisation
 
@@ -17,7 +17,7 @@ Démonstration d'implémentation d'une **recherche vectorielle** avec PostgreSQL
 ```
 cd postgresql-pgvector-tutoriel/
 ```
-3. Lancer le conteneur Docker avec
+3. Lancer le conteneur 🐳 Docker avec
 ```
 docker compose up -d
 ```
@@ -28,6 +28,14 @@ pip install -r requirements.txt
 5. **Executer le notebook** pour remplir la base de données
 
 Le notebook se connecte à la base de donnée locale et effectue des requète SQL avec `psycopg`.
+
+## 💻 Application Streamlit
+
+Après avoir executé le notebook, la commande suivante lance une application Streamlit avec laquelle vous pouvez effectuer une recherche sémantique dans la base de donnée.
+
+```
+streamlit run app.py
+```
 
 ## Administrer la base de données
 
@@ -51,16 +59,6 @@ Pour se connecter à la base de données avec `pgAdmin` :
   - **Port** : `5432`
   - **Username** : `testuser`
   - **Password** : `testpwd`
-
-
-
-## 💻 Application Streamlit
-
-Après avoir executé le notebook, la commande suivante lance une application Streamlit avec laquelle vous pouvez effectuer une recherche sémantique dans la base de donnée.
-
-```
-streamlit run app.py
-```
 
 ## 📑 Todo 
  

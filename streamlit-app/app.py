@@ -1,7 +1,5 @@
 # Python In-built packages
 import time 
-# import os
-# import uuid
 
 # External packages
 import streamlit as st
@@ -10,12 +8,17 @@ import psycopg
 from pgvector.psycopg import register_vector
 from sentence_transformers import SentenceTransformer
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv() 
+
 # Identifiants de connection à la BDD PostgreSQL + pgvector
-user = 'testuser'
-password = 'testpwd'
-host = 'localhost'
-port = 5432
-database = 'vectordb'
+user = os.environ['DB_USER']
+password = os.environ['DB_PWD']
+host = os.environ['DB_HOST']
+port = os.environ['DB_PORT']
+database = os.environ['DB_NAME']
 db_url = f"postgresql://{user}:{password}@{host}:{port}/{database}"
 
 # Configuration de la page Streamlit
@@ -26,12 +29,19 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# --- Test DB Connection ---
+def test_connection():
+    with psycopg.connect(conninfo=db_url) as conn:
+        res = conn.execute("""SELECT * FROM version();""").fetchall()
+        psql_ver = res[0][0]
+        return psql_ver
+    
+st.success(f"**Connecté à la base de données** : {test_connection()}")
+
+
 # Modèle Sentence Transformer pour l'encodage de la requète de recherche
 # Modèle pré-entraîné d'encodage de textes en français
 model_name = "dangvantuan/sentence-camembert-base" # vector size = 768
-
-# A propos du caching
-# https://docs.streamlit.io/library/advanced-features/caching
 
 @st.cache_resource(show_spinner=False)  # 👈 Add the caching decorator
 def load_model(model_name):
@@ -70,10 +80,11 @@ Recherche sémantique dans une base de donnée PostgreSQL avec l'extension [pgve
 - Jeu de données : [Piaf v1.2](https://www.data.gouv.fr/en/datasets/piaf-le-dataset-francophone-de-questions-reponses/)
 - Modèle : [Sentence Transformers](https://www.sbert.net/index.html) [all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)
 """
+with st.form(key="search-form"):
+    query = st.text_input('Recherche', placeholder="Entrez votre recherche ici")
+    submit = st.form_submit_button('Rechercher')
 
-query = st.text_input('Recherche', placeholder="Entrez votre recherche ici")
-
-if query : 
+if submit : 
     with st.container():
         star_time = time.time()
         res_df = query_to_dataframe(query, ['cosine_similarity', 'id', 'question', 'reponse'])

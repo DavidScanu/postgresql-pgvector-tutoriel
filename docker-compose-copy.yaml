@@ -28,6 +28,21 @@ services:
     volumes:
       - pgadmin-data:/var/lib/pgadmin
 
+  streamlit-app:
+    container_name: streamlit-app
+    build: ./streamlit-app
+    environment:
+      - PORT=5001
+      - DB_HOST=postgres-db
+      - DB_USER=testuser
+      - DB_PWD=testpwd
+      - DB_PORT=5432
+      - DB_NAME=vectordb
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./streamlit-app:/streamlit-app 
+
 volumes: 
   postgres-data:
   pgadmin-data:

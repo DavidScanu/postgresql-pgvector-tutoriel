@@ -67,6 +67,8 @@ Pour se connecter à la base de données avec `pgAdmin` :
 ## 📑 Todo 
  
 - App Streamlit dans un container
+- Changer de dataset
+- Ecrire un article de blog
 - Ajouter un indexing (hsnwlib ou IVFFlat)
 - Ajouter options de recherche (Filtering)
 

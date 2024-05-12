@@ -5,4 +5,4 @@ COPY requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
-CMD streamlit run Detection.py --server.port=$PORT --server.address=0.0.0.0
+CMD streamlit run app.py --server.port=$PORT --server.address=0.0.0.0

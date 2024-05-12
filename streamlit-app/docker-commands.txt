@@ -1,0 +1,19 @@
+docker build -t st-app . 
+
+docker run --name st-app-container \
+--env-file .env \
+-e PORT=5001 \
+-v .:/streamlit-app \
+-p 5001:5001 \
+st-app
+
+docker run --name st-app-container \
+-e PORT=5001 \
+-e DB_HOST=postgres-db \
+-e DB_USER=testuser \
+-e DB_PWD=testpwd \
+-e DB_PORT=5432 \
+-e DB_NAME=vectordb \
+-v .:/streamlit-app \
+-p 5001:5001 \
+st-app
